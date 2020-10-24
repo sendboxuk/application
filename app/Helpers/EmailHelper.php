@@ -169,22 +169,4 @@ class EmailHelper
         $this->setTemplate($product->template);
         $this->setPlaceholders($variables);
     }    
-
-    public function createContentForTemplateByImporter($row)
-    {
-        $template = Template::find($row[0]);
-        $placeholders = $template->placeholders;
-        $variables = [];
-
-        foreach ($placeholders as $placeholder) {
-            $variables[$placeholder] = $request['placeholders'][$placeholder];
-        }
-        $variables['transaction_id'] = $request['transaction_id'];
-
-        $this->setTransactionId($request['transaction_id']);
-        $this->setSubject($template->subject);
-        $this->setEmail($request['email']);
-        $this->setTemplate($template);
-        $this->setPlaceholders($variables);
-    }
 }

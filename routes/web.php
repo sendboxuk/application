@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::any('debug', function () {
+
+    $user = App\Models\User::find(1);
+    $token = $user->createToken('token-name');
+    return $token;
+    return $token->plainTextToken;
     $faker = \Faker\Factory::create();
     $faker->addProvider(new \Faker\Provider\Miscellaneous($faker));
     
@@ -21,22 +26,29 @@ Route::any('debug', function () {
     }
 });
 
+Route::group(['prefix' => '/', 'middleware' => ['web', 'auth']], function () {
+    Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-Route::get('/email-audits', [App\Http\Controllers\AuditController::class, 'email_audits'])->name('audit.emails');
-Route::get('/email-audits/{id}/view', [App\Http\Controllers\AuditController::class, 'email_audit_view'])->name('audit.emails.view');
-Route::get('/email-audits/{id}/render', [App\Http\Controllers\AuditController::class, 'render_mail'])->name('audit.emails.render_mail');
-Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
-Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
-Route::get('/products/{product}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
+    Route::get('/email-audits', [App\Http\Controllers\AuditController::class, 'email_audits'])->name('audit.emails');
+    Route::get('/email-audits/{id}/view', [App\Http\Controllers\AuditController::class, 'email_audit_view'])->name('audit.emails.view');
+    Route::get('/email-audits/{id}/render', [App\Http\Controllers\AuditController::class, 'render_mail'])->name('audit.emails.render_mail');
 
+    Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
+    Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
+    Route::get('/products/{product}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
 
-Route::get('/templates/create', [App\Http\Controllers\TemplateController::class, 'create'])->name('templates.create');
-Route::get('/templates/{template}/view', [App\Http\Controllers\TemplateController::class, 'view'])->name('templates.view');
-Route::get('/templates/{template}/edit', [App\Http\Controllers\TemplateController::class, 'edit'])->name('templates.edit');
-Route::get('/templates', [App\Http\Controllers\TemplateController::class, 'index'])->name('templates.index');
+    Route::get('/templates', [App\Http\Controllers\TemplateController::class, 'index'])->name('templates.index');
+    Route::get('/templates/create', [App\Http\Controllers\TemplateController::class, 'create'])->name('templates.create');
+    Route::get('/templates/{template}/view', [App\Http\Controllers\TemplateController::class, 'view'])->name('templates.view');
+    Route::get('/templates/{template}/edit', [App\Http\Controllers\TemplateController::class, 'edit'])->name('templates.edit');
 
-Route::get('/upload-send', [App\Http\Controllers\UploaderController::class, 'index'])->name('manual.index');
+    Route::get('/settings', [App\Http\Controllers\SettingController::class, 'edit'])->name('settings.edit');
+    Route::post('/settings', [App\Http\Controllers\SettingController::class, 'update'])->name('settings.update');
 
+    Route::post('/regenerate-token', [App\Http\Controllers\SettingController::class, 'regenerate_token'])->name('settings.regenerate-token');    
+
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+});
 Auth::routes();
 

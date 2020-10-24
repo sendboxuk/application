@@ -28,10 +28,12 @@ class LogSentMessage
      */
     public function handle(MessageSent $event)
     {
+        $to = array_keys($event->message->getTo());
+
         DB::table('email_audits')->insert(
             [
                 'message' => $event->message->getBody(),
-                'to' => json_encode($event->message->getTo()),
+                'to' => $to[0],
                 'subject'=> $event->message->getSubject(),
                 'transaction_id' => $event->data['transaction_id'],
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),

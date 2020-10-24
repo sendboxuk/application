@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'DropshipMailer',
+    'title' => 'SendBox',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>SENDBOX</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'SendBox',
 
     /*
     |--------------------------------------------------------------------------
@@ -232,6 +232,11 @@ return [
 
     'menu' => [
         [
+            'text'        => 'Dashboard',
+            'url'         => '/',
+            'icon'        => 'fas fa-tachometer-alt',
+        ],         
+        [
             'text'        => ' Mail List',
             'url'         => 'email-audits',
             'icon'        => 'fas fa-envelope-square',
@@ -246,21 +251,17 @@ return [
             'url'         => 'products',
             'icon'        => 'fas fa-box',
         ],        
-        [
-            'text'        => 'Upload and Send',
-            'url'         => 'upload-send',
-            'icon'        => 'fa fa-upload',
-        ],                
+           
         ['header' => 'account_settings'],
         [
             'text' => 'Settings',
             'url'  => 'settings',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-cog',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'settings/password',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'profile',
+            'url'  => 'profile',
+            'icon' => 'fas fa-fw fa-user',
         ],
         
     ],
@@ -336,11 +337,11 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
             ],

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(['middleware' => 'api'], function(){
+Route::group(['middleware' => ['api', 'auth:sanctum']], function(){
     Route::post('/sendby/template', [App\Http\Controllers\ApiController::class, 'sendby_template'])->name('sendby.template');
     Route::post('/sendby/product', [App\Http\Controllers\ApiController::class, 'sendby_product'])->name('sendby.product');
 });

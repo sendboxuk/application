@@ -2,11 +2,17 @@
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use DB;
-class ProductsSeeder extends Seeder
-{
+use Database\DisableForeignKeys;
+use Database\TruncateTable;
 
+class ProductSeeder extends Seeder
+{
+    use TruncateTable, DisableForeignKeys;
     public function run()
     {
+        $this->disableForeignKeys();
+        $this->truncate('products');
+
         DB::table('products')->insert(
             [
                 ['name' => 'XBOX Game', 'template_id' => 1, 'sku' => 'XHA'],
@@ -14,6 +20,6 @@ class ProductsSeeder extends Seeder
                 ['name' => 'MS Office 2020', 'template_id' => 1, 'sku' => 'X4A']
             ]
         );
-
+        $this->enableForeignKeys();
     }
 }
