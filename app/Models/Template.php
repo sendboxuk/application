@@ -35,6 +35,11 @@ class Template extends Model
     public function getPlaceholdersListAttribute()
     {
         $return = null;
+        
+        if (!is_array($this->placeholders)){
+            return null;
+        }
+
         foreach($this->placeholders as $placeholder){
             $return .= $placeholder . ', ';
         }
