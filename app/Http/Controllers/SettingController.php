@@ -17,10 +17,13 @@ class SettingController extends Controller
     {
         $user = Auth::user();
         $drivers = MailDriver::all();
-    /*         $tokens = $user->tokens;
-            return $tokens; */
+
+        $token = null;
         $token = $user->tokens()->orderBy('id', 'desc')->first();
-        $token = $token->plainTextToken;
+        if ($token){
+            $token = $token->plainTextToken;
+        }
+
         return view('panel.settings.edit', \compact('drivers', 'token'));
     }
     
