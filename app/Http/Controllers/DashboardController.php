@@ -22,8 +22,8 @@ class DashboardController extends Controller
         $count_products = Product::count();
         $count_emails = DB::table('email_audits')->count();
 
-        $labels = null;
-        $data = null;
+        $labels = [];
+        $data = [];
         foreach($results as $result){
             $labels[] = date('d/M', strtotime($result->stat_date));
             $data[] = $result->total;
