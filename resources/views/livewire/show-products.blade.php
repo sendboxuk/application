@@ -23,6 +23,10 @@
                 <td>{{ $product->template->name }}</td>
                 <td>
  
+                <a class="btn btn-primary btn-xs float-right ml-1"
+                        href="{{ route('products.view', $product->id) }}"><i
+                            class="fas fa-eye"></i></a>
+
                     <a class="btn btn-primary btn-xs float-right ml-1"
                         href="{{ route('products.edit', $product->id) }}"><i
                             class="fas fa-pen"></i></a>

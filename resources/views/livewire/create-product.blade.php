@@ -22,7 +22,7 @@
                 </option>
                 @endforeach
             </select>
-            @error('template') <span class="error">{{ $message }}</span> @enderror
+            @error('template_id') <span class="error">{{ $message }}</span> @enderror
         </div>
 
         <button type="submit" class="btn btn-primary btn-sm mb-4 float-right">Save Product</button>

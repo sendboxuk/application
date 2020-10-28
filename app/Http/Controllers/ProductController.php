@@ -23,5 +23,17 @@ class ProductController extends Controller
     {
         return view('panel.products.edit', \compact('product'));
     }    
-    
+ 
+    public function view(Product $product)
+    {
+        $template = $product->template;
+        $json = [
+            'sku' => $product->sku,
+            'transaction_id' => 'YOUR TRANSACTION ID',
+            'email' => 'WHO WILL RECEIVE',
+            'placeholders' => $template->sample_placeholders
+        ];
+
+        return view('panel.products.view', \compact('product', 'json'));
+    }    
 }

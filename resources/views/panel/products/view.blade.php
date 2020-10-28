@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title') Email Audits @parent @stop
+@section('title') View Product Details @parent @stop
 @section('content')
 
 <div class="content">
@@ -8,26 +8,35 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Email Audits</h4>
+                    <h4 class="card-title"> View Product Details</h4>
                 </div>
                 <div class="card-body">
-                <div class="row">
-                        
-                        <div class="col-12">
-                            <a target="_blank" class="btn btn-sm btn-primary float-right"
-                                href="{{ route('audit.emails.render_mail', $email->id) }}">
 
-                                <i class="fas fa-envelope "></i>
-                                View Email</a>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <a class="btn float-right btn-sm btn-primary m-1"
+                                href="{{ route('products.edit', $product->id) }}">Edit
+                                Product</a>
+                            <a class="btn float-right btn-sm btn-primary m-1" href="{{ route('products.create') }}">Add
+                            Product</a>
                         </div>
                     </div>
 
                     <div class="row m-4 p-3 border border-top-0 border-left-0 border-right-0">
                         <div class="col-12 col-md-3">
-                            Recipient name
+                            Name:
                         </div>
                         <div class="col-12 col-md-9">
-                            {{$email->to}}
+                            {{ $product->name }}
+                        </div>
+                    </div>
+
+                    <div class="row m-4 p-3 border border-top-0 border-left-0 border-right-0">
+                        <div class="col-12 col-md-3">
+                            Template:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            {{ $product->template->name }}
                         </div>
                     </div>
 
@@ -36,25 +45,27 @@
                             Subject:
                         </div>
                         <div class="col-12 col-md-9">
-                            {{ $email->subject }}
+                            {{ $product->template->subject }}
+                        </div>
+                    </div>
+
+                    <div class="row m-4 p-3 border border-top-0 border-left-0 border-right-0">
+                        <div class="col-12 col-md-3">
+                            Placeholders:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            {{$product->template->placeholders_list}}
                         </div>
                     </div>
                     <div class="row m-4 p-3 border border-top-0 border-left-0 border-right-0">
                         <div class="col-12 col-md-3">
-                            Transaction ID:
+                            API Code:
                         </div>
                         <div class="col-12 col-md-9">
-                            {{ $email->transaction_id }}
+                            <pre>{!!  json_encode($json, JSON_PRETTY_PRINT) !!}</pre>
                         </div>
                     </div>
-                    <div class="row m-4 p-3 border border-top-0 border-left-0 border-right-0">
-                        <div class="col-12 col-md-3">
-                            Date
-                        </div>
-                        <div class="col-12 col-md-9">
-                            {{ Carbon\Carbon::parse($email->created_at)->format('d M Y H:i') }}
-                        </div>
-                    </div>
+
 
                 </div>
             </div>

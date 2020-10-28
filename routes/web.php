@@ -36,6 +36,7 @@ Route::group(['prefix' => '/', 'middleware' => ['web', 'auth']], function () {
     Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
     Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
     Route::get('/products/{product}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
+    Route::get('/products/{product}/view', [App\Http\Controllers\ProductController::class, 'view'])->name('products.view');
 
     Route::get('/templates', [App\Http\Controllers\TemplateController::class, 'index'])->name('templates.index');
     Route::get('/templates/create', [App\Http\Controllers\TemplateController::class, 'create'])->name('templates.create');
