@@ -17,9 +17,9 @@ class TemplateSeeder extends Seeder
         $json2 = json_encode(['trackid' => 'asdasdasd']);
         DB::table('templates')->insert(
             [
-                ['name' => 'Games Templates', 'subject' => 'Your Order', 'filename' => 'games'],
-                ['name' => 'Staff Templates', 'subject' => 'Your Order', 'filename' => 'staff'],
-                ['name' => 'Warehouse Templates', 'subject' => 'Your Order', 'filename' => 'warehouse']
+                ['name' => 'Digital Order Templates', 'subject' => 'Your Serial Key', 'filename' => 'digital_order', 'placehoders' => '["customer_name", "serial_key"]'],
+                ['name' => 'Balance Templates', 'subject' => 'Your Balance', 'filename' => 'balance', 'placehoders' => '["account_name", "account_number", "balance"]'],
+                ['name' => 'Alert Templates', 'subject' => 'Alert', 'filename' => 'alert', 'placehoders' => '["website_url"]']
             ]
         );
         $this->enableForeignKeys();

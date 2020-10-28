@@ -161,6 +161,18 @@
         clear: both !important;
     }
 
+    .keybox{
+        display: block !important;
+        max-width: 500px !important;
+        margin: 0 auto !important;
+        /* makes it centered */
+        clear: both !important;
+        border:1px solid #f6f6f6;
+        text-align: center;
+        font-size: large;
+        padding: 8px
+    }
+
     /* Set the padding on the td rather than the div for Outlook compatibility */
     .body-wrap .container {
         padding: 20px;
@@ -195,8 +207,15 @@
                             <td>
 
                                 <p>Hi {{$customer_name}},</p>
+                                <p>We had received your order. Your serial key is below:</p>
 
 
+                                <div class="keybox">
+                                    {{$serial_key}}
+                                </div>
+
+                                Thanks
+ 
 
                             </td>
                         </tr>
@@ -204,7 +223,7 @@
                             <td>
                                 <br /><br />
 
-                  
+
 
                             </td>
                         </tr>
@@ -229,7 +248,7 @@
                     <table>
                         <tr>
                             <td align="center">
-                                <p><a href="https://www.loggfy.com">Monitoring services by loggfy</a>
+                                <p><a href="https://www.sendbox.uk">Powered by SendBox</a>
                                 </p>
                             </td>
                         </tr>

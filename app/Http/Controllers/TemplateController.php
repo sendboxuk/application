@@ -29,6 +29,13 @@ class TemplateController extends Controller
 
     public function view(Template $template)
     {
-        return view('panel.templates.view', \compact('template'));
+        $json = [
+            'template' => $template->id,
+            'transaction_id' => 'YOUR TRANSACTION ID',
+            'email' => 'WHO WILL RECEIVE',
+            'placeholders' => $template->sample_placeholders
+        ];
+
+        return view('panel.templates.view', \compact('template', 'json'));
     }
 }

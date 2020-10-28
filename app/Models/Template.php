@@ -47,5 +47,18 @@ class Template extends Model
         return $return;
     }
 
+    public function getSamplePlaceholdersAttribute()
+    {
+        $return = [];
+        
+        if (!is_array($this->placeholders)){
+            return null;
+        }
+
+        foreach($this->placeholders as $placeholder){
+            $return[$placeholder] = 'UPDATE DATA';
+        }
+        return $return;
+    }    
 
 }

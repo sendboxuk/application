@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Mail;
 
 class ApiController extends Controller
 {
-
     public function sendby_template(Request $request)
     {
         $email = new EmailHelper();
