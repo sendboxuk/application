@@ -15,7 +15,7 @@
                 <div class="icon">
                     <i class="far fa-sticky-note"></i>
                 </div>
-                <a href="#{{route('templates.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="{{route('templates.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
