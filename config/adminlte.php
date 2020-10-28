@@ -237,9 +237,9 @@ return [
             'icon'        => 'fas fa-tachometer-alt',
         ],         
         [
-            'text'        => ' Mail List',
+            'text'        => 'Mail Audits',
             'url'         => 'email-audits',
-            'icon'        => 'fas fa-envelope-square',
+            'icon'        => 'fas fa-envelope',
         ],         
        [
             'text'        => 'Templates',

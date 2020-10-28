@@ -1,4 +1,9 @@
 <div>
+@if(count($templates) < 1)
+    <div class="alert alert-warning" role="alert">
+        Sorry, there is no saved emails in database
+    </div>
+@else
 <div class="box-body table-responsive no-padding">
     <table class="table table-hover">
 
@@ -31,4 +36,5 @@
     </table>
 </div>
 {{ $templates->links() }}
+@endif
 </div>
