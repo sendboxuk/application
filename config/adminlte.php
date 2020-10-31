@@ -237,10 +237,15 @@ return [
             'icon'        => 'fas fa-tachometer-alt',
         ],         
         [
-            'text'        => 'Mail Audits',
+            'text'        => 'Email Audits',
             'url'         => 'email-audits',
             'icon'        => 'fas fa-envelope',
-        ],         
+        ],  
+        [
+            'text'        => 'Api Audits',
+            'url'         => 'api-audits',
+            'icon'        => 'fas fa-network-wired',
+        ],                 
        [
             'text'        => 'Templates',
             'url'         => 'templates',

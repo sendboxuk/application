@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-4">
         <div class="col">
             <div style="width:100%;">
                 {!! $chartjs->render() !!}

@@ -138,12 +138,8 @@ class EmailHelper
     {
         $template = Template::find($request->template);
         $placeholders = $template->placeholders;
-        $variables = [];
 
-        foreach ($placeholders as $placeholder) {
-            $variables[$placeholder] = $request['placeholders'][$placeholder];
-        }
-        $variables['transaction_id'] = $request['transaction_id'];
+        $variables = $this->updateVarialbleList($placeholders, $request);        
 
         $this->setTransactionId($request['transaction_id']);
         $this->setSubject($template->subject);
@@ -156,12 +152,7 @@ class EmailHelper
     {
         $product = Product::where('sku', '=', $request['sku'])->firstOrFail();
         $placeholders = $product->template->placeholders;
-        $variables = [];
-
-        foreach ($placeholders as $placeholder) {
-            $variables[$placeholder] = $request['placeholders'][$placeholder];
-        }
-        $variables['transaction_id'] = $request['transaction_id'];
+        $variables = $this->updateVarialbleList($placeholders, $request);
 
         $this->setTransactionId($request['transaction_id']);
         $this->setSubject($product->template->subject);
@@ -169,4 +160,18 @@ class EmailHelper
         $this->setTemplate($product->template);
         $this->setPlaceholders($variables);
     }    
+
+    private function updateVarialbleList($placeholders, $request){
+        $variables = [];
+
+        foreach ($placeholders as $placeholder) {
+            if (isset($request['placeholders'][$placeholder])){
+                $variables[$placeholder] = $request['placeholders'][$placeholder];
+            }else{
+                $variables[$placeholder] = 'Not Defined';
+            }
+        }
+        $variables['transaction_id'] = $request['transaction_id'];
+        return $variables;        
+    }
 }

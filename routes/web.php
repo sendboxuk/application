@@ -33,6 +33,11 @@ Route::group(['prefix' => '/', 'middleware' => ['web', 'auth']], function () {
     Route::get('/email-audits/{id}/view', [App\Http\Controllers\AuditController::class, 'email_audit_view'])->name('audit.emails.view');
     Route::get('/email-audits/{id}/render', [App\Http\Controllers\AuditController::class, 'render_mail'])->name('audit.emails.render_mail');
 
+    Route::get('/api-audits', [App\Http\Controllers\AuditController::class, 'api_audits'])->name('audit.api');
+    Route::get('/api-audits/{id}/view', [App\Http\Controllers\AuditController::class, 'api_audit_view'])->name('audit.api.view');
+    Route::get('/api-audits/{id}/resend', [App\Http\Controllers\AuditController::class, 'resend'])->name('audit.emails.resend');
+
+
     Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
     Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
     Route::get('/products/{product}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');

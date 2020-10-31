@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmailAuditsTable extends Migration
+class CreateApiAuditsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateEmailAuditsTable extends Migration
      */
     public function up()
     {
-        Schema::create('email_audits', function (Blueprint $table) {
+        Schema::create('api_audits', function (Blueprint $table) {
             $table->id();
-            $table->text('message');           
-            $table->string('to')->nullable();  
-            $table->string('subject')->nullable();  
-            $table->string('transaction_id')->index()->nullable();                    
+            $table->string('transaction_id')->index()->nullable();
+            $table->string('request')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateEmailAuditsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('email_audits');
+        Schema::dropIfExists('api_audits');
     }
 }
