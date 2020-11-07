@@ -9,6 +9,8 @@ use App\Models\Product;
 use App\Models\Template;
 use App\Helpers\EmailHelper;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PostMail;
 
 class EmailHelperTest extends TestCase
 {
@@ -119,4 +121,43 @@ class EmailHelperTest extends TestCase
         $emailHelper->createContentForProduct($request);
         $this->assertEquals($product->template->filename, $emailHelper->getTemplate()->filename);
     }       
+
+    public function test_sending_email()
+    {
+
+        $product = Product::factory()->forTemplate()->make();  
+        
+        $request = [
+            'sku' => $product->sku,
+            'transaction_id' => Str::random(10),
+            'email' => 'hi@sendbox.uk',
+            'placeholders' => [
+                'customer_name' => 'John Doe',
+                'product_name' => $product->name
+            ]
+        ];
+        
+        $emailHelper = new EmailHelper();
+        $emailHelper->setProduct($product);
+        $emailHelper->createContentForProduct($request);
+ 
+        Mail::fake();
+
+        // Assert that no mailables were sent...
+        Mail::assertNothingSent();
+
+        $mailable = new PostMail($emailHelper);
+        Mail::to('test@example.local')->send($mailable);
+
+        Mail::assertSent(PostMail::class); // passes
+ 
+        // Assert a specific type of mailable was dispatched meeting the given truth test...
+         Mail::assertSent(function (PostMail $mail) use ($emailHelper) {
+            return $mail->email_model->getSubject() === $emailHelper->getSubject();
+        });  
+ 
+        // Assert a mailable was sent twice...
+        Mail::assertSent(PostMail::class, 1);
+    }
+
 }
