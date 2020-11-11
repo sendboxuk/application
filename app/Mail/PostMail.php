@@ -12,7 +12,7 @@ class PostMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $email_model;
+    public $email_model;
     
     /**
      * Create a new message instance.
@@ -31,9 +31,10 @@ class PostMail extends Mailable
      */
     public function build()
     {
-        return $this
+ 
+         return $this
                     ->subject($this->email_model->getSubject())
                     ->view('emails.'.$this->email_model->getTemplate()->filename)
-                    ->with($this->email_model->getPlaceholders());
+                    ->with($this->email_model->getPlaceholders()); 
     }
 }

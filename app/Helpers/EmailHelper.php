@@ -136,7 +136,12 @@ class EmailHelper
 
     public function createContentForTemplate($request)
     {
-        $template = Template::find($request->template);
+        if (!$this->template){
+            $template = Template::find($request['template']);
+        }else{
+            $template = $this->template;
+        }
+
         $placeholders = $template->placeholders;
 
         $variables = $this->updateVarialbleList($placeholders, $request);        
@@ -150,7 +155,12 @@ class EmailHelper
 
     public function createContentForProduct($request)
     {
-        $product = Product::where('sku', '=', $request['sku'])->firstOrFail();
+        if (!$this->product){
+            $product = Product::where('sku', '=', $request['sku'])->firstOrFail();
+        }else{
+            $product = $this->product;
+        }
+
         $placeholders = $product->template->placeholders;
         $variables = $this->updateVarialbleList($placeholders, $request);
 

@@ -13,6 +13,6 @@ class Product extends Model
 
     public function template()
     {
-        return $this->belongsTo('App\Models\Template');
+        return $this->belongsTo(Template::class);
     }    
 }

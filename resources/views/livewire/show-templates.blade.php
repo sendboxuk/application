@@ -22,6 +22,9 @@
                 <td>{{ $template->subject }}</td>
                 <td>{{ $template->filename }}</td>
                 <td>
+                <a class="btn btn-primary btn-xs float-right ml-1"
+                        href="{{ route('templates.send', $template->id) }}"><i class="far fa-paper-plane"></i></a>
+
                     <a class="btn btn-primary btn-xs float-right ml-1"
                         href="{{ route('templates.view', $template->id) }}"><i
                             class="far fa-eye"></i></a>
