@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Mail;
-use App\Mail\PostMail;
 
 class ProductController extends Controller
 {
@@ -36,4 +34,9 @@ class ProductController extends Controller
 
         return view('panel.products.view', \compact('product', 'json'));
     }    
+
+    public function send(Product $product)
+    {
+        return view('panel.products.send', \compact('product'));
+    }
 }

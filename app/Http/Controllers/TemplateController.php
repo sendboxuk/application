@@ -38,4 +38,9 @@ class TemplateController extends Controller
 
         return view('panel.templates.view', \compact('template', 'json'));
     }
+
+    public function send(Template $template)
+    {
+        return view('panel.templates.send', \compact('template'));
+    }    
 }

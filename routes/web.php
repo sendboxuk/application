@@ -42,11 +42,15 @@ Route::group(['prefix' => '/', 'middleware' => ['web', 'auth']], function () {
     Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
     Route::get('/products/{product}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
     Route::get('/products/{product}/view', [App\Http\Controllers\ProductController::class, 'view'])->name('products.view');
+    Route::get('/products/{product}/send', [App\Http\Controllers\ProductController::class, 'send'])->name('products.send');
+    Route::post('/products/{product}/send', [App\Http\Controllers\ProductController::class, 'sent'])->name('products.sent');
 
     Route::get('/templates', [App\Http\Controllers\TemplateController::class, 'index'])->name('templates.index');
     Route::get('/templates/create', [App\Http\Controllers\TemplateController::class, 'create'])->name('templates.create');
     Route::get('/templates/{template}/view', [App\Http\Controllers\TemplateController::class, 'view'])->name('templates.view');
     Route::get('/templates/{template}/edit', [App\Http\Controllers\TemplateController::class, 'edit'])->name('templates.edit');
+    Route::get('/templates/{template}/send', [App\Http\Controllers\TemplateController::class, 'send'])->name('templates.send');
+    Route::get('/templates/{template}/sent', [App\Http\Controllers\TemplateController::class, 'sent'])->name('templates.sent');
 
     Route::get('/settings', [App\Http\Controllers\SettingController::class, 'edit'])->name('settings.edit');
     Route::post('/settings', [App\Http\Controllers\SettingController::class, 'update'])->name('settings.update');

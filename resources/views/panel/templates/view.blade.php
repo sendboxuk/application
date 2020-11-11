@@ -14,6 +14,9 @@
 
                     <div class="row mb-2">
                         <div class="col">
+                        <a class="btn float-right btn-sm btn-primary m-1"
+                                href="{{ route('templates.send', $template->id) }}">Send An
+                                Email</a>
                             <a class="btn float-right btn-sm btn-primary m-1"
                                 href="{{ route('templates.edit', $template->id) }}">Edit
                                 Template</a>

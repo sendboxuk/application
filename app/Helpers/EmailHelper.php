@@ -137,7 +137,7 @@ class EmailHelper
     public function createContentForTemplate($request)
     {
         if (!$this->template){
-            $template = Template::find($request->template);
+            $template = Template::find($request['template']);
         }else{
             $template = $this->template;
         }
