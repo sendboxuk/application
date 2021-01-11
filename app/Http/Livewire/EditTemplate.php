@@ -12,6 +12,7 @@ class EditTemplate extends Component
     public $subject;
     public $template_id;
     public $placeholders;
+    public $sensitive_placeholders;
 
     public function mount($template)
     {
@@ -20,6 +21,7 @@ class EditTemplate extends Component
         $this->filename = $template->filename;
         $this->subject = $template->subject;
         $this->placeholders = $template->placeholders;
+        $this->sensitive_placeholders = $template->sensitive_placeholders;
     }
 
     protected $rules = [
@@ -38,7 +40,8 @@ class EditTemplate extends Component
             'name' => $this->name,
             'filename' => $this->filename,
             'subject' => $this->subject,
-            'placeholders' => $this->placeholders
+            'placeholders' => $this->placeholders,
+            'sensitive_placeholders' => $this->sensitive_placeholders
         ]);
         return redirect()->to('/templates');
     }    

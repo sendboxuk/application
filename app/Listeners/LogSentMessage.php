@@ -30,9 +30,24 @@ class LogSentMessage
     {
         $to = array_keys($event->message->getTo());
 
+        $emailModel = $event->data['email_model'];
+        $template = $emailModel->getTemplate();
+        
+        $sensitive_placeholders = $template->sensitive_placeholders;
+        $placeholders = $emailModel->getPlaceholders();
+        $message = $event->message->getBody();
+
+
+        foreach($placeholders as $key => $value){
+            if (in_array($key, $sensitive_placeholders)){
+                \Log::debug('Search:'. $value);
+                $message = str_replace($value, '******', $message);
+            }
+        }
+
         DB::table('email_audits')->insert(
             [
-                'message' => $event->message->getBody(),
+                'message' => $message,
                 'to' => $to[0],
                 'subject'=> $event->message->getSubject(),
                 'transaction_id' => $event->data['transaction_id'],

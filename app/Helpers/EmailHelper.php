@@ -142,7 +142,7 @@ class EmailHelper
             $template = $this->template;
         }
 
-        $placeholders = $template->placeholders;
+        $placeholders = array_merge($template->placeholders, $template->sensitive_placeholders);
 
         $variables = $this->updateVarialbleList($placeholders, $request);        
 
@@ -161,7 +161,7 @@ class EmailHelper
             $product = $this->product;
         }
 
-        $placeholders = $product->template->placeholders;
+        $placeholders = array_merge($template->placeholders, $template->sensitive_placeholders);
         $variables = $this->updateVarialbleList($placeholders, $request);
 
         $this->setTransactionId($request['transaction_id']);

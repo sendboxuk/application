@@ -31,7 +31,6 @@ class PostMail extends Mailable
      */
     public function build()
     {
- 
          return $this
                     ->subject($this->email_model->getSubject())
                     ->view('emails.'.$this->email_model->getTemplate()->filename)
