@@ -92,7 +92,11 @@ class Template extends Model
         foreach($this->placeholders as $placeholder){
             $return[$placeholder] = 'UPDATE DATA';
         }
+
+        foreach($this->sensitive_placeholders as $placeholder){
+            $return[$placeholder] = 'UPDATE DATA';
+        }        
+
         return $return;
     }    
-
 }

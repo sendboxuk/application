@@ -37,11 +37,10 @@ class LogSentMessage
         $placeholders = $emailModel->getPlaceholders();
         $message = $event->message->getBody();
 
-
         foreach($placeholders as $key => $value){
             if (in_array($key, $sensitive_placeholders)){
-                \Log::debug('Search:'. $value);
-                $message = str_replace($value, '******', $message);
+                $fill = str_repeat('*', strlen ($value)); 
+                $message = str_replace($value, $fill, $message);
             }
         }
 

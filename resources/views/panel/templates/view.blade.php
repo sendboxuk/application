@@ -60,6 +60,17 @@
                             {{$template->placeholders_list}}
                         </div>
                     </div>
+
+                    <div class="row m-4 p-3 border border-top-0 border-left-0 border-right-0">
+                        <div class="col-12 col-md-3">
+                            Sensitive Placeholders:
+                        </div>
+                        <div class="col-12 col-md-9">
+                            {{$template->sensitive_placeholders_list}}
+                        </div>
+                    </div>
+
+
                     <div class="row m-4 p-3 border border-top-0 border-left-0 border-right-0">
                         <div class="col-12 col-md-3">
                             API Code:

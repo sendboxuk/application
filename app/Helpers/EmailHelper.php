@@ -13,6 +13,28 @@ class EmailHelper
     protected $placeholders;
     protected $transaction_id;
     protected $subject;
+    protected $sensitive_keys;
+
+    /**
+     * Get the value of sensitive keys
+     */ 
+    public function getSensitiveKeys()
+    {
+        return $this->sensitive_keys;
+    }
+
+    /**
+     * Set the value of sensitive keys
+     *
+     * @return  self
+     */ 
+    public function setSensitiveKeys($keys)
+    {
+        $this->sensitive_keys = $keys;
+
+        return $this;
+    }
+
     /**
      * Get the value of email
      */ 
@@ -141,7 +163,7 @@ class EmailHelper
         }else{
             $template = $this->template;
         }
-
+        $this->setSensitiveKeys($template->sensitive_placeholders);
         $placeholders = array_merge($template->placeholders, $template->sensitive_placeholders);
 
         $variables = $this->updateVarialbleList($placeholders, $request);        
@@ -160,7 +182,7 @@ class EmailHelper
         }else{
             $product = $this->product;
         }
-
+        $this->setSensitiveKeys($template->sensitive_placeholders);
         $placeholders = array_merge($template->placeholders, $template->sensitive_placeholders);
         $variables = $this->updateVarialbleList($placeholders, $request);
 

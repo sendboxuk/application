@@ -31,8 +31,9 @@ class AuditController extends Controller
     {
         $result = DB::table('api_audits')->where('id', $id)->first();
         $emails = DB::table('email_audits')->select('id', 'to', 'subject', 'transaction_id', 'created_at')->where('transaction_id', $result->transaction_id)->get();
+        $request = json_decode($result->request, true);
 
-        return view('panel.audits.api_audit_view', \compact('emails', 'result'));
+        return view('panel.audits.api_audit_view', \compact('emails', 'result', 'request'));
     }      
     
     public function render_mail($id)
@@ -47,12 +48,19 @@ class AuditController extends Controller
         $request = $email->request;
         $request = (array)(json_decode($request));
         $emailHelper = new EmailHelper();
+
         $request['placeholders'] = (array)$request['placeholders'];
 
         if (isset($request['sku'])){
             $emailHelper->createContentForProduct($request);
         }else{
             $emailHelper->createContentForTemplate($request);
+        }
+
+        $template = $emailHelper->getTemplate();
+        $sensitive_placeholders = $template->sensitive_placeholders;
+        if (count($sensitive_placeholders) > 0){
+            return redirect()->to("/api-audits/{$id}/view")->with('error', 'Sensitive placeholders can\'t be retried from request');
         }
 
         Mail::to($request['email'])->queue(new PostMail($emailHelper));
