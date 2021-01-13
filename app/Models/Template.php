@@ -89,6 +89,10 @@ class Template extends Model
             return null;
         }
 
+        if (!is_array($this->sensitive_placeholders)){
+            return null;
+        }        
+
         foreach($this->placeholders as $placeholder){
             $return[$placeholder] = 'UPDATE DATA';
         }
