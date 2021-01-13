@@ -11,6 +11,7 @@ class CreateTemplate extends Component
     public $filename;
     public $subject;
     public $placeholders;
+    public $sensitive_placeholders;
 
     protected $rules = [
         'name' => 'required|min:6',
@@ -28,7 +29,8 @@ class CreateTemplate extends Component
             'name' => $this->name,
             'filename' => $this->filename,
             'subject' => $this->subject,
-            'placeholders' => $this->placeholders
+            'placeholders' => $this->placeholders,
+            'sensitive_placeholders' => $this->sensitive_placeholders
         ]);
         return redirect()->to('/templates');
     }

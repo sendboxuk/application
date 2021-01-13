@@ -18,7 +18,7 @@ class SendTemplateEmail extends Component
     public function mount($template)
     {
         $this->template_id = $template->id;
-        $this->placeholders = $template->placeholders;
+        $this->placeholders = array_merge($template->placeholders, $template->sensitive_placeholders);
     }
 
     protected $rules = [
@@ -32,7 +32,7 @@ class SendTemplateEmail extends Component
 
         $placeholder_values = $this->placeholders;
         $template = Template::find($this->template_id);
-        $keys = $template->placeholders;
+        $keys = array_merge($template->placeholders, $template->sensitive_placeholders);
 
         $placeholder_array = [];
         $i = 0;

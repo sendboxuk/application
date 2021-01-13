@@ -22,6 +22,14 @@
                         </div>
                     </div>
 
+                    @if (session('error'))
+                        <div class="alert alert-warning m-2">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+
+
                     <div class="row m-4 p-3 border border-top-0 border-left-0 border-right-0">
                         <div class="col-12 col-md-3">
                             Transaction ID:
@@ -42,8 +50,7 @@
                         <div class="col-12 col-md-3">
                             Data
                         </div>
-                        <div class="col-12 col-md-9">
-                            <pre>{!! $result->request !!}</pre>
+                        <div class="col-12 col-md-9"><pre>@json($request, JSON_PRETTY_PRINT)</pre>
                         </div>
                     </div>
                     <div class="box-body table-responsive no-padding">
