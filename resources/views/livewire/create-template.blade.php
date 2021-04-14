@@ -7,12 +7,6 @@
             @error('name') <span class="error">{{ $message }}</span> @enderror
         </div>
         <div class="form-group">
-            <label class="control-label" for="filename">File Name: </label>
-            <input type="text" wire:model="filename" class="form-control col-3">
-            @error('filename') <span class="error">
-                {{ $message }}</span> @enderror
-        </div>
-        <div class="form-group">
             <label class="control-label" for="subject">Subject: </label>
             <input type="text" wire:model="subject" class="form-control col-9">
             @error('subject') <span class="error">

@@ -9,9 +9,9 @@
 
         <tr>
             <th style="width: 5%">#ID</th>
-            <th style="width: 20%">Name</th>
-            <th style="width: 35%">Subject</th>
-            <th style="width: 25%">File Name</th>
+            <th style="width: 25%">Name</th>
+            <th style="width: 45%">Subject</th>
+            <th style="width: 10%">Date</th>
             <th style="width: 15%"></th>
         </tr>
         <tbody>
@@ -20,10 +20,15 @@
                 <td>{{ $template->id }}</td>
                 <td>{{ $template->name }}</td>
                 <td>{{ $template->subject }}</td>
-                <td>{{ $template->filename }}</td>
+                <td>{{ date('d-m-Y', strtotime($template->created_at)) }}</td>
                 <td>
                 <a class="btn btn-primary btn-xs float-right ml-1"
                         href="{{ route('templates.send', $template->id) }}"><i class="far fa-paper-plane"></i></a>
+
+
+                        <a class="btn btn-primary btn-xs float-right ml-1"
+                        href="{{ route('templates.email', $template->id) }}"><i
+                            class="fas fa-envelope"></i></a>
 
                     <a class="btn btn-primary btn-xs float-right ml-1"
                         href="{{ route('templates.view', $template->id) }}"><i

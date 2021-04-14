@@ -49,6 +49,8 @@ Route::group(['prefix' => '/', 'middleware' => ['web', 'auth']], function () {
     Route::get('/templates/create', [App\Http\Controllers\TemplateController::class, 'create'])->name('templates.create');
     Route::get('/templates/{template}/view', [App\Http\Controllers\TemplateController::class, 'view'])->name('templates.view');
     Route::get('/templates/{template}/edit', [App\Http\Controllers\TemplateController::class, 'edit'])->name('templates.edit');
+    Route::get('/templates/{template}/email', [App\Http\Controllers\TemplateController::class, 'email'])->name('templates.email');    
+    Route::post('/templates/{template}/save_email', [App\Http\Controllers\TemplateController::class, 'save_email'])->name('templates.save_email');    
     Route::get('/templates/{template}/send', [App\Http\Controllers\TemplateController::class, 'send'])->name('templates.send');
     Route::get('/templates/{template}/sent', [App\Http\Controllers\TemplateController::class, 'sent'])->name('templates.sent');
 
