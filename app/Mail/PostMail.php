@@ -7,12 +7,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Helpers\EmailHelper;
+use Mustache_Engine;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class PostMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $email_model;
+
+    public $template_engine;
     
     /**
      * Create a new message instance.
@@ -22,7 +27,22 @@ class PostMail extends Mailable
     public function __construct(EmailHelper $email_model)
     {
         $this->email_model = $email_model;
+        
+        $this->template_engine = new Mustache_Engine;
     }
+
+    public function getHtmlTemplate(): string
+    {
+        $template = $this->email_model->getTemplate();
+
+        try {
+            $html_template = Storage::get('emails-templates/'. $template->filename .'.html');
+        } catch (FileNotFoundException $ex) {
+            Storage::put('emails-templates/'. $template->filename . '.html', $template->html_template);
+            $html_template = Storage::get('emails-templates/'. $template->filename .'.html');
+        }
+        return $html_template;
+    }    
 
     /**
      * Build the message.
@@ -30,10 +50,16 @@ class PostMail extends Mailable
      * @return $this
      */
     public function build()
-    {
-         return $this
+    { 
+        $data = $this->email_model->getPlaceholders();
+        $email_body = $this->template_engine->render(
+            $this->getHtmlTemplate(),
+            $data
+        );
+
+        return $this
                     ->subject($this->email_model->getSubject())
-                    ->view('emails.'.$this->email_model->getTemplate()->filename)
-                    ->with($this->email_model->getPlaceholders()); 
+                    ->html($email_body)
+                    ->with($data); 
     }
 }

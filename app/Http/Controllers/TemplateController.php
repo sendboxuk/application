@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Template;
+use Illuminate\Support\Facades\Storage;
 
 class TemplateController extends Controller
 {
@@ -42,5 +43,21 @@ class TemplateController extends Controller
     public function send(Template $template)
     {
         return view('panel.templates.send', \compact('template'));
-    }    
+    }        
+
+    public function email(Template $template)
+    {
+        $content = $template->html_template;
+        return view('panel.templates.email', \compact('template','content'));
+    }  
+    
+    public function save_email(Template $template, Request $request)
+    {
+        $content = $request->content;
+        Storage::put('emails-templates/'. $template->filename . '.html', $content);
+        $template->html_template = $content;
+        $template->save();
+        return response(['message' => 'ok'], 201)
+                  ->header('Content-Type', 'application/json');
+    }      
 }

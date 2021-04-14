@@ -4,18 +4,17 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Template;
+use Illuminate\Support\Str;
 
 class CreateTemplate extends Component
 {
     public $name;
-    public $filename;
     public $subject;
     public $placeholders;
     public $sensitive_placeholders;
 
     protected $rules = [
         'name' => 'required|min:6',
-        'filename' => 'required|min:3',
         'subject' => 'required|min:3',
     ];
 
@@ -27,7 +26,7 @@ class CreateTemplate extends Component
 
         Template::create([
             'name' => $this->name,
-            'filename' => $this->filename,
+            'filename' => Str::slug($this->name) .'-'. Str::random(10),
             'subject' => $this->subject,
             'placeholders' => $this->placeholders,
             'sensitive_placeholders' => $this->sensitive_placeholders

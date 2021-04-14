@@ -205,18 +205,12 @@
                     <table>
                         <tr>
                             <td>
-
                                 <p>Hi {{$customer_name}},</p>
                                 <p>We had received your order. Your serial key is below:</p>
-
-
                                 <div class="keybox">
                                     {{$serial_key}}
                                 </div>
-
                                 Thanks
- 
-
                             </td>
                         </tr>
                         <tr>

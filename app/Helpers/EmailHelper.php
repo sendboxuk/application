@@ -182,6 +182,8 @@ class EmailHelper
         }else{
             $product = $this->product;
         }
+
+        $template = $product->template;
         $this->setSensitiveKeys($template->sensitive_placeholders);
         $placeholders = array_merge($template->placeholders, $template->sensitive_placeholders);
         $variables = $this->updateVarialbleList($placeholders, $request);
