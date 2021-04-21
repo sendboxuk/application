@@ -17,13 +17,7 @@
             <input type="text" wire:model="placeholders.{{ $index }}" class="form-control col-8">
         </div>
         @endforeach
-        <label class="control-label" for="transaction_id">Placeholders: </label>
-        @foreach ($placeholders as $index => $placeholder)
-        <div class="form-group" wire:key="placeholders-field-{{ $index }}">
-            <input type="text" wire:model="placeholders.{{ $index }}" class="form-control col-8">
-        </div>
-        @endforeach        
-
+ 
         <button type="submit" class="btn btn-primary btn-sm mb-4 float-right">Send Email</button>
     </form>
 </div>

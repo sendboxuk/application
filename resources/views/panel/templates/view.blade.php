@@ -19,7 +19,10 @@
                                 Email</a>
                             <a class="btn float-right btn-sm btn-primary m-1"
                                 href="{{ route('templates.edit', $template->id) }}">Edit
-                                Template</a>
+                                Details</a>
+                                <a class="btn float-right btn-sm btn-primary m-1"
+                                href="{{ route('templates.email', $template->id) }}">
+                                Template Editor</a>                                
                             <a class="btn float-right btn-sm btn-primary m-1" href="{{ route('templates.create') }}">Add
                                 Template</a>
                         </div>
@@ -33,16 +36,7 @@
                             {{ $template->name }}
                         </div>
                     </div>
-
-                    <div class="row m-4 p-3 border border-top-0 border-left-0 border-right-0">
-                        <div class="col-12 col-md-3">
-                            File Name:
-                        </div>
-                        <div class="col-12 col-md-9">
-                            {{ $template->filename }}
-                        </div>
-                    </div>
-
+ 
                     <div class="row m-4 p-3 border border-top-0 border-left-0 border-right-0">
                         <div class="col-12 col-md-3">
                             Subject:
