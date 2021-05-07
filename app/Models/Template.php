@@ -48,7 +48,6 @@ class Template extends Model
         return $return;
     }
 
-    
     public function setPlaceholdersAttribute($value)
     {
         $placeholders = [];

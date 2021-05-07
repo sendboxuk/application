@@ -6,15 +6,14 @@
     <div class="row">
         <div class="col">
 
-        <div class="card">
+            <div class="card">
                 <div class="card-header">
                     <h4 class="card-title"> Create a Service</h4>
                 </div>
                 <div class="card-body">
-
-        @livewire('create-service')
-        </div>
-        </div>
+                    @livewire('create-service')
+                </div>
+            </div>
         </div>
     </div>
 </div>
