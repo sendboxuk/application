@@ -14,16 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 Route::any('debug', function () {
 
-    $user = App\Models\User::find(1);
-    $token = $user->createToken('token-name');
-    return $token;
-    return $token->plainTextToken;
-    $faker = \Faker\Factory::create();
-    $faker->addProvider(new \Faker\Provider\Miscellaneous($faker));
-    
-    for ($i=0; $i < 110; $i++) { 
-        echo "1"  .',"'. $faker->email . '","'. substr($faker->md5, 0, -10) . '","'. $faker->name. '","'.  substr($faker->md5, 0, -10) .'"<br>'; 
-    }
+
+    $service = App\Models\Service::find(1);
+    $service->update(
+        [
+        'name' => 'Test',
+        'emails' => 'sadas',
+        'template_id' => 4
+    ]);
+
 });
 
 Route::group(['prefix' => '/', 'middleware' => ['web', 'auth']], function () {
@@ -44,6 +43,14 @@ Route::group(['prefix' => '/', 'middleware' => ['web', 'auth']], function () {
     Route::get('/products/{product}/view', [App\Http\Controllers\ProductController::class, 'view'])->name('products.view');
     Route::get('/products/{product}/send', [App\Http\Controllers\ProductController::class, 'send'])->name('products.send');
     Route::post('/products/{product}/send', [App\Http\Controllers\ProductController::class, 'sent'])->name('products.sent');
+
+    Route::get('/services', [App\Http\Controllers\ServiceController::class, 'index'])->name('services.index');
+    Route::get('/services/create', [App\Http\Controllers\ServiceController::class, 'create'])->name('services.create');
+    Route::get('/services/{service}/edit', [App\Http\Controllers\ServiceController::class, 'edit'])->name('services.edit');
+    Route::get('/services/{service}/view', [App\Http\Controllers\ServiceController::class, 'view'])->name('services.view');
+    Route::get('/services/{service}/send', [App\Http\Controllers\ServiceController::class, 'send'])->name('services.send');
+    Route::post('/services/{service}/send', [App\Http\Controllers\ServiceController::class, 'sent'])->name('services.sent');
+
 
     Route::get('/templates', [App\Http\Controllers\TemplateController::class, 'index'])->name('templates.index');
     Route::get('/templates/create', [App\Http\Controllers\TemplateController::class, 'create'])->name('templates.create');

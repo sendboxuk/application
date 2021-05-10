@@ -11,7 +11,6 @@
                     <h4 class="card-title">  Send an Email</h4>
                 </div>
                 <div class="card-body">
-
                     @livewire('send-template-email', ['template' => $template])
                 </div>
             </div>

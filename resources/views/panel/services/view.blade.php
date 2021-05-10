@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title') View Product Details @parent @stop
+@section('title') View Service Details @parent @stop
 @section('content')
 
 <div class="content">
@@ -8,21 +8,21 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> View Product Details</h4>
+                    <h4 class="card-title"> View Service Details</h4>
                 </div>
                 <div class="card-body">
 
                     <div class="row mb-2">
                         <div class="col">
                         <a class="btn float-right btn-sm btn-primary m-1"
-                                href="{{ route('products.send', $product->id) }}">Send An
+                                href="{{ route('services.send', $service->id) }}">Send An
                                 Email</a>
 
                             <a class="btn float-right btn-sm btn-primary m-1"
-                                href="{{ route('products.edit', $product->id) }}">Edit
-                                product</a>
-                            <a class="btn float-right btn-sm btn-primary m-1" href="{{ route('products.create') }}">Add
-                            product</a>
+                                href="{{ route('services.edit', $service->id) }}">Edit
+                                Service</a>
+                            <a class="btn float-right btn-sm btn-primary m-1" href="{{ route('services.create') }}">Add
+                            Service</a>
                         </div>
                     </div>
 
@@ -31,7 +31,7 @@
                             Name:
                         </div>
                         <div class="col-12 col-md-9">
-                            {{ $product->name }}
+                            {{ $service->name }}
                         </div>
                     </div>
 
@@ -40,7 +40,7 @@
                             Template:
                         </div>
                         <div class="col-12 col-md-9">
-                            {{ $product->template->name }}
+                            {{ $service->template->name }}
                         </div>
                     </div>
 
@@ -49,7 +49,7 @@
                             Subject:
                         </div>
                         <div class="col-12 col-md-9">
-                            {{ $product->template->subject }}
+                            {{ $service->template->subject }}
                         </div>
                     </div>
 
@@ -58,7 +58,7 @@
                             Placeholders:
                         </div>
                         <div class="col-12 col-md-9">
-                            {{$product->template->placeholders_list}}
+                            {{$service->template->placeholders_list}}
                         </div>
                     </div>
                     <div class="row m-4 p-3 border border-top-0 border-left-0 border-right-0">

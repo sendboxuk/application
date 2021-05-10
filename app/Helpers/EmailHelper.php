@@ -3,13 +3,14 @@ namespace App\Helpers;
 
 use App\Models\Template;
 use App\Models\Product;
-
+use App\Models\Service;
 
 class EmailHelper
 {
     protected $email;
     protected $template;
     protected $product;
+    protected $service;
     protected $placeholders;
     protected $transaction_id;
     protected $subject;
@@ -194,6 +195,28 @@ class EmailHelper
         $this->setTemplate($product->template);
         $this->setPlaceholders($variables);
     }    
+
+    public function createContentForService($request)
+    {
+        if (!$this->service){
+            $service = Service::where('id', '=', $request['service'])->firstOrFail();
+        }else{
+            $service = $this->service;
+        }
+
+        $template = $service->template;
+        $this->setSensitiveKeys($template->sensitive_placeholders);
+        $placeholders = array_merge($template->placeholders, $template->sensitive_placeholders);
+        $variables = $this->updateVarialbleList($placeholders, $request);
+
+        $this->setTransactionId($request['transaction_id']);
+        $this->setSubject($service->template->subject);
+        $this->setEmail($service->emails);
+        $this->setTemplate($service->template);
+        $this->setPlaceholders($variables);
+    }    
+
+
 
     private function updateVarialbleList($placeholders, $request){
         $variables = [];

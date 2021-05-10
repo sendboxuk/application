@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Service extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'sku', 'template_id'];
+    protected $fillable = ['name', 'emails', 'template_id'];
 
     public function template()
     {

@@ -21,7 +21,7 @@ class SendProductEmail extends Component
         $this->product_id = $product->id;
         $this->name = $product->name;
         $this->sku = $product->sku;
-        $this->placeholders = $product->template->placeholders;
+        $this->placeholders = array_merge($product->template->placeholders, $product->template->sensitive_placeholders);
     }
 
     protected $rules = [
@@ -35,8 +35,8 @@ class SendProductEmail extends Component
 
         $placeholder_values = $this->placeholders;
         $product = Product::find($this->product_id);
-        $keys = $product->template->placeholders;
-
+ 
+        $keys = array_merge($product->template->placeholders, $product->template->sensitive_placeholders);
         $placeholder_array = [];
         $i = 0;
         foreach($keys as $key)
