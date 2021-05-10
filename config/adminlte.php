@@ -15,7 +15,7 @@ return [
     */
 
     'title' => 'SendBox',
-    'title_prefix' => '',
+    'title_prefix' => 'Sendbox Panel | ',
     'title_postfix' => '',
 
     /*
@@ -256,7 +256,11 @@ return [
             'url'         => 'products',
             'icon'        => 'fas fa-box',
         ],        
-           
+        [
+            'text'        => 'Services',
+            'url'         => 'services',
+            'icon'        => 'fas fa-at',
+        ],                   
         ['header' => 'account_settings'],
         [
             'text' => 'Settings',

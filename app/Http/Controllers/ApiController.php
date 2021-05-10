@@ -32,6 +32,23 @@ class ApiController extends Controller
         return response()->json(['message' => 'The email saved to queue'], 201); 
     }
 
+    public function sendby_service(Request $request)
+    {
+        $email = new EmailHelper();
+        $email->createContentForService($request);
+        $this->log_request($request, $email->getSensitiveKeys());
+
+        $service = $email->getService();
+
+        $to_emails = [];
+        foreach(explode(',', $service->emails) as $toemail){
+            $to_emails[] = trim($toemail);
+        }
+
+        Mail::to($to_emails)->queue(new PostMail($email));
+        return response()->json(['message' => 'The email saved to queue'], 201); 
+    }    
+
     private function log_request(Request $request, $keys)
     {
         $data = json_decode($request->getContent(), true);

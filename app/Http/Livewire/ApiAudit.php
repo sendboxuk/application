@@ -22,7 +22,7 @@ class ApiAudit extends Component
         }        
         
         $results = DB::table('api_audits')
-                    ->where('transaction_id', 'like', '%'. $transidterm .'%')
+                    ->where('transaction_id', 'like', $transidterm .'%')
                     ->orderBy('created_at', 'desc')->paginate();
 
         return view('livewire.api-audit', [

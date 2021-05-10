@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title') Create Product @parent @stop
+@section('title') Create Service @parent @stop
 @section('content')
 
 <div class="content">
@@ -8,11 +8,11 @@
 
         <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Create a Product</h4>
+                    <h4 class="card-title"> Create a Service</h4>
                 </div>
                 <div class="card-body">
 
-        @livewire('create-product')
+        @livewire('create-service')
         </div>
         </div>
         </div>
