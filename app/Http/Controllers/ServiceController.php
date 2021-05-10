@@ -22,21 +22,20 @@ class ServiceController extends Controller
         return view('panel.services.edit', \compact('service'));
     }    
  
-    public function view(Product $product)
+    public function view(Service $service)
     {
-        $template = $product->template;
+        $template = $service->template;
         $json = [
-            'sku' => $product->sku,
+            'template' => $template->id,
             'transaction_id' => 'YOUR TRANSACTION ID',
-            'email' => 'WHO WILL RECEIVE',
+            'email' => $service->emails,
             'placeholders' => $template->sample_placeholders
         ];
-
-        return view('panel.services.view', \compact('product', 'json'));
+        return view('panel.services.view', \compact('service', 'json'));
     }    
 
-    public function send(Product $product)
+    public function send(Service $service)
     {
-        return view('panel.services.send', \compact('product'));
+        return view('panel.services.send', \compact('service'));
     }
 }

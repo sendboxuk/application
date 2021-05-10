@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title') Send a Service Email @parent @stop
+@section('title') Send a Product Email @parent @stop
 @section('content')
 
 <div class="content">
@@ -8,11 +8,10 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Send a Service Email</h4>
+                    <h4 class="card-title"> Send a Product Email</h4>
                 </div>
                 <div class="card-body">
-
-                    @livewire('send-service-email', ['service' => $service])
+                    @livewire('send-product-email', ['product' => $product])
                 </div>
             </div>
         </div>
