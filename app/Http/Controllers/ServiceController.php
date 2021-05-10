@@ -26,9 +26,8 @@ class ServiceController extends Controller
     {
         $template = $service->template;
         $json = [
-            'template' => $template->id,
+            'service' => $service->id,
             'transaction_id' => 'YOUR TRANSACTION ID',
-            'email' => $service->emails,
             'placeholders' => $template->sample_placeholders
         ];
         return view('panel.services.view', \compact('service', 'json'));

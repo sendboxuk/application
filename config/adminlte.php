@@ -15,7 +15,7 @@ return [
     */
 
     'title' => 'SendBox',
-    'title_prefix' => '',
+    'title_prefix' => 'Sendbox Panel | ',
     'title_postfix' => '',
 
     /*

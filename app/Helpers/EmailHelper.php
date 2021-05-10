@@ -157,6 +157,14 @@ class EmailHelper
         return $this;
     }
 
+    /**
+     * Get the value of Service
+     */ 
+    public function getService()
+    {
+        return $this->service;
+    }
+
     public function createContentForTemplate($request)
     {
         if (!$this->template){
@@ -203,6 +211,8 @@ class EmailHelper
         }else{
             $service = $this->service;
         }
+        
+        $this->service = $service;
 
         $template = $service->template;
         $this->setSensitiveKeys($template->sensitive_placeholders);
@@ -215,8 +225,7 @@ class EmailHelper
         $this->setTemplate($service->template);
         $this->setPlaceholders($variables);
     }    
-
-
+ 
 
     private function updateVarialbleList($placeholders, $request){
         $variables = [];

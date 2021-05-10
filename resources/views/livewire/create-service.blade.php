@@ -8,7 +8,7 @@
         </div>
         <div class="form-group">
             <label class="control-label" for="emails">EMAIL(S): </label>
-            <input type="text" wire:model="emails" class="form-control col-3">
+            <input type="text" wire:model="emails" class="form-control col-9">
             @error('emails') <span class="error">{{ $message }}</span> @enderror
             <p>Must be separated with the comma!</p>
         </div>
